@@ -1,5 +1,5 @@
 # MultiEnglishChineseDictionaries
-It is a very rudimentary bashed perl-ish works programmed from 2020 to 2024 in Taiwan.
+It is a very rudimentary bashed perl-ish works programmed on antiX Debian from 2020 to 2024 in Taiwan.
 
 ```bash
 # English<->Chinese scientific-terminology dictionary
