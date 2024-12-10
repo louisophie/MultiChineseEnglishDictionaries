@@ -4,7 +4,8 @@ It is a very rudimentary bashed perl-ish works programmed from 2020 to 2024 in T
 ```bash
 # English<->Chinese scientific-terminology dictionary
 perl naer.pl
-
+```
+```bash
 # English<->Chinese dictionaries
 perl dic.pl
 ```
