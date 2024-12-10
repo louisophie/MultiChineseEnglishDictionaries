@@ -8,7 +8,7 @@ use open ':std', ':encoding(UTF-8)';
 sub say{if(@_){print"@_\n";}else{print;print"\n";}}
 use Encode qw(decode encode); # $_=decode("utf8",$_); 
 
-say"Space as delimiters and '\e[01;31mfell off\e[m' as phases; ctrl+v permitted";
+say"Space as delimiters and '\e[01;31mfell off\e[m' as phases; ctrl+v and Regex .+* permitted";
 open(FH,"<:encoding(UTF-8)","Dic_ahd_93559-items.xml")  or die "Can't open:$!";
 open(GH,"<:encoding(UTF-8)","Dic_21th-etymonlin-zigen.xml")  or die "Can't open:$!";
 
@@ -41,13 +41,13 @@ my$t;
 	foreach my$stdin(@_){
 		print$less "---------- $stdin ----------\n";
 		if($stdin=~/[.+*]/){
-			map{print$less "$_ahd{$_}" if /$stdin/}keys(%_ahd);
+			map{$_ahd{$_}=~s/<key>.+<\/key>\n//g;print$less "$_ahd{$_}" if /$stdin/}keys(%_ahd);
 			print$less "===========================\n";
-			map{print$less "$_21{$_}" if /$stdin/}keys(%_21);
+			map{$_21{$_}=~s/<key>(.+)<\/key>/$1/g;print$less "$_21{$_}" if /$stdin/}keys(%_21);
 		}else{
-			print$less "$_ahd{$stdin}";
+			$_ahd{$stdin}=~s/<key>.+<\/key>\n//g;print$less "$_ahd{$stdin}";
 			print$less "===========================\n";
-			print$less "$_21{$stdin}";
+			$_21{$stdin}=~s/<key>(.+)<\/key>/$1/g;print$less "$_21{$stdin}";
 		}
 	}
 redo;}
